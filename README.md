@@ -27,7 +27,7 @@ TaskBoard to aplikacja internetowa służąca do zarządzania zadaniami. Umożli
 ## Struktura projektu
 
 | Folder | Za co odpowiada |
-|---|---|
+| --- | --- |
 | `frontend/` | Zawiera pliki odpowiedzialne za wygląd i interfejs użytkownika. |
 | `backend/` | Zawiera kod odpowiedzialny za działanie aplikacji. |
 | `database/` | Zawiera pliki i strukturę bazy danych. |
