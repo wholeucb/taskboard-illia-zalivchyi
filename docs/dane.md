@@ -1,3 +1,4 @@
+
 # Opis danych TaskBoard
 
 ## Co aplikacja przechowuje
@@ -5,7 +6,7 @@
 ### Użytkownik
 
 | Informacja | Przykład |
-|---|---|
+| --- | --- |
 | Imię | Jan |
 | Nazwisko | Kowalski |
 | Login | janek |
@@ -14,7 +15,7 @@
 ### Tablica
 
 | Informacja | Przykład |
-|---|---|
+| --- | --- |
 | Nazwa tablicy | Moje zadania |
 | Opis | Zadania do wykonania |
 | Data utworzenia | 2026-11-04 |
@@ -23,7 +24,7 @@
 ### Zadanie
 
 | Informacja | Przykład |
-|---|---|
+| --- | --- |
 | Tytuł | Nauka HTML |
 | Opis | Powtórzyć podstawy HTML |
 | Status | W trakcie |
@@ -38,7 +39,14 @@ Jeden użytkownik może mieć kilka tablic. Na jednej tablicy może znajdować s
 
 ```json
 {
-  "title": "Nauka HTML"
+  "id": 1,
+  "title": "Nauka HTML",
+  "description": "Powtórzyć podstawy HTML",
+  "status": "W trakcie",
+  "priority": "Wysoki",
+  "dueDate": "2026-11-10",
+  "boardId": 1,
+  "assignedUserId": 1
 }
 ```
 
