@@ -51,6 +51,7 @@ Szczegółowy opis danych znajduje się w pliku `docs/dane.md`.
 Diagram ERD został przygotowany w Mermaid i znajduje się w pliku `docs/dane.md`.
 
 Diagram zawiera trzy tabele:
+
 - uzytkownicy
 - tablice
 - zadania
