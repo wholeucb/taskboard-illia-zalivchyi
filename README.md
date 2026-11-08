@@ -5,7 +5,7 @@ TaskBoard to aplikacja internetowa służąca do zarządzania zadaniami. Umożli
 ## Technologie
 
 - **Frontend:** HTML, CSS, JavaScript
-- **Backend:** PHP
+- **Backend:** Node.js
 - **Baza danych:** MySQL
 - **Narzędzia:** Visual Studio Code, Git, GitHub, XAMPP
 
@@ -20,9 +20,12 @@ TaskBoard to aplikacja internetowa służąca do zarządzania zadaniami. Umożli
 ## Uruchomienie
 
 1. Sklonuj repozytorium na komputer.
-2. Umieść folder projektu w katalogu `htdocs` programu XAMPP.
-3. Uruchom Apache i MySQL w XAMPP.
-4. Otwórz projekt w przeglądarce internetowej.
+2. Otwórz projekt w Visual Studio Code.
+3. Zainstaluj Node.js.
+4. Uruchom bazę danych MySQL.
+5. Zainstaluj zależności poleceniem `npm install`.
+6. Uruchom backend poleceniem `npm start`.
+7. Otwórz aplikację w przeglądarce internetowej.
 
 ## Struktura projektu
 
