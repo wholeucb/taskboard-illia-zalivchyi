@@ -4,7 +4,6 @@
 Folder zawiera pliki bazy danych projektu TaskBoard.
 Sa tutaj tabele users, boards i tasks oraz zapytania SQL.
 
-
 ## Kopia zapasowa
 
 Kopia bazy znajduje sie w folderze `database/backup/`.
