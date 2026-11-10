@@ -1,5 +1,4 @@
-﻿
-# Database
+﻿# Database
 
 Folder zawiera pliki bazy danych projektu TaskBoard.
 Sa tutaj tabele users, boards i tasks oraz zapytania SQL.
