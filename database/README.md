@@ -1,4 +1,14 @@
-# Database
+﻿# Database
 
-Folder zawiera pliki związane z bazą danych projektu.
-Znajdują się tutaj informacje o strukturze bazy danych i jej zasobach.
+Folder zawiera pliki bazy danych projektu TaskBoard.
+Sa tutaj tabele users, boards i tasks oraz zapytania SQL.
+
+## Kopia zapasowa
+
+Kopia bazy znajduje sie w folderze `database/backup/`.
+Kopia zostala odtworzona w bazie `taskboard_test`.
+
+Liczba zadan w `taskboard`: 9.
+Liczba zadan w `taskboard_test`: 9.
+
+Kopia zostala poprawnie odtworzona.
