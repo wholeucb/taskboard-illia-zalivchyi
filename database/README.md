@@ -10,4 +10,3 @@ Kopia została odtworzona w bazie `taskboard_test`.
 Liczba zadań w `taskboard`: 9.
 Liczba zadań w `taskboard_test`: 9.
 Kopia została poprawnie odtworzona.
-    
