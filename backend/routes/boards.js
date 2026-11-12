@@ -44,4 +44,34 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
+
+// Sprawdzamy, czy tablica istnieje
+// Pobieramy zadania z wybranej tablicy
+// Zwracamy blad 404, jesli nie ma tablicy
+// Wyswietlamy liste zadan
+
+router.get('/:boardId/tasks', async (req, res, next) => {
+    try {
+        const [boards] = await pool.query(
+            'SELECT id FROM boards WHERE id = ? AND isDeleted = 0',
+            [req.params.boardId]
+        );
+
+        if (boards.length === 0) {
+            return res.status(404).json({
+                error: 'Nie znaleziono tablicy'
+            });
+        }
+
+        const [tasks] = await pool.query(
+            'SELECT * FROM tasks WHERE boardId = ? AND isDeleted = 0',
+            [req.params.boardId]
+        );
+
+        res.json(tasks);
+    } catch (err) {
+        next(err);
+    }
+});
+
 module.exports = router;

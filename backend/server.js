@@ -10,5 +10,7 @@ app.get('/api/health',(req,res)=>{
 });
 
 app.use('/api/boards', require('./routes/boards'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/tasks', require('./routes/tasks'));
 
 app.listen(3000,()=>console.log('Serwer:http://localhost:3000'));
