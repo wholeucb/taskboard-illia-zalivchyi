@@ -34,3 +34,69 @@
 - [ ] Skrypt odtwarza bazę bez błędów na czystym MySQL.
 - [ ] Wszystkie zapytania działają i mają komentarze.
 - [ ] Pull request z branchu `feature/tb-2-baza` ma zielony workflow i jest scalony przez merge commit.
+
+
+## Część 2 – API zadań
+
+W tej części zadania rozbudowałem API aplikacji TaskBoard.
+
+### Wykonane zadania
+
+- Dodałem plik `backend/routes/tasks.js`.
+- Dodałem pobieranie, dodawanie, edycję i usuwanie zadań.
+- Dodałem listę zadań wybranej tablicy.
+- Dodałem `GET /api/users` bez pola `passwordHash`.
+- Dodałem walidację danych zadań.
+- Sprawdziłem działanie API w Postmanie.
+- Sprawdziłem błędy 400 i 404.
+- Sprawdziłem soft delete w bazie danych.
+- Dodałem opis bazy danych do README.
+
+### Testowanie
+
+Testy API wykonałem w Postmanie.
+
+Sprawdziłem odpowiedzi 200, 201, 204, 400 i 404.
+
+Usunięte zadanie pozostaje w bazie danych
+z wartością `isDeleted = 1`.
+
+## Baza danych
+
+Aplikacja TaskBoard korzysta z bazy danych MySQL.
+
+### Tabele
+
+- `users` – przechowuje dane użytkowników.
+- `boards` – przechowuje tablice użytkowników.
+- `tasks` – przechowuje zadania przypisane do tablic.
+
+### Relacje
+
+- Jeden użytkownik może mieć wiele tablic.
+- Jedna tablica może zawierać wiele zadań.
+- Zadanie może być przypisane do użytkownika.
+
+### Soft delete
+
+Usuwanie zadania odbywa się przez zmianę pola
+`isDeleted` na `1` oraz zapisanie daty w `deletedAt`.
+
+Zadanie pozostaje w bazie danych, ale nie jest
+wyświetlane na liście aktywnych zadań.
+
+### Odtwarzanie bazy danych
+
+1. Uruchom MySQL w XAMPP.
+2. Otwórz phpMyAdmin.
+3. Zaimportuj plik `database/taskboard.sql`.
+4. Skonfiguruj konta na podstawie `database/konta.sql`,
+   ustawiając własne hasła.
+
+### Kopia zapasowa
+
+Kopia zapasowa bazy danych znajduje się
+w folderze `database/backup/`.
+
+Poprawność kopii sprawdzono przez odtworzenie
+bazy danych `taskboard_test`.

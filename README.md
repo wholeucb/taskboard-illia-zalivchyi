@@ -43,3 +43,38 @@ Pliki potrzebne podczas praktyk są w folderze [materialy](materialy/README.md).
 ## Autor
 
 Illia Zalivchyi 3TP
+
+## Baza danych
+
+Aplikacja korzysta z bazy danych MySQL.
+
+### Tabele i relacje
+
+- `users` – przechowuje użytkowników.
+- `boards` – przechowuje tablice użytkowników.
+- `tasks` – przechowuje zadania.
+
+Jeden użytkownik może mieć wiele tablic.
+Jedna tablica może mieć wiele zadań.
+Zadanie może być przypisane do użytkownika.
+
+### Soft delete
+
+Usunięcie zadania ustawia `isDeleted = 1`
+oraz zapisuje datę w `deletedAt`.
+Zadanie pozostaje w bazie danych.
+
+### Odtwarzanie bazy
+
+Bazę można odtworzyć przez import pliku
+`database/taskboard.sql` w phpMyAdmin.
+
+Konta bazy danych można skonfigurować
+na podstawie `database/konta.sql`,
+po ustawieniu własnych haseł.
+
+### Backup
+
+Kopia zapasowa znajduje się w `database/backup/`.
+Poprawność kopii sprawdzono przez odtworzenie
+bazy `taskboard_test`.

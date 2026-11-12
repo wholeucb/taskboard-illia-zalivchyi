@@ -1,0 +1,358 @@
+{
+  "info": {
+    "_postman_id": "0bd74bcd-28e1-495e-9742-a15a26cd8636",
+    "name": "TaskBoard TB-2 API",
+    "description": "### Welcome to Postman! This is your first collection.\n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests  \n• Test your API in real-world scenarios  \n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59411079",
+    "_collection_link": "https://go.postman.co/collection/59411079-0bd74bcd-28e1-495e-9742-a15a26cd8636?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Dodawanie zadania (201)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Nowe zadanie testowe\",\r\n  \"description\": \"Sprawdzenie dodawania zadania\",\r\n  \"status\": \"todo\",\r\n  \"priority\": \"medium\",\r\n  \"deadline\": \"2026-11-20\",\r\n  \"boardId\": 3,\r\n  \"assigneeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ponowne usuniecie zadania (404)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/tasks/11",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            "11"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Nieistniejaca tablica (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/tasks/11",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            "11"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Edycja zadania (200",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Zmienione zadanie testowe\",\r\n  \"description\": \"Sprawdzenie edycji zadania\",\r\n  \"status\": \"in_progress\",\r\n  \"priority\": \"high\",\r\n  \"deadline\": \"2026-11-25\",\r\n  \"boardId\": 3,\r\n  \"assigneeId\": 2\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/tasks/11",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            "11"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pusty tytul (400)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"\",\r\n  \"description\": \"Test walidacji\",\r\n  \"status\": \"todo\",\r\n  \"priority\": \"medium\",\r\n  \"deadline\": \"2026-11-20\",\r\n  \"boardId\": 3,\r\n  \"assigneeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Nieistniejaca tablica (400)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Test tablicy\",\r\n  \"status\": \"todo\",\r\n  \"priority\": \"medium\",\r\n  \"boardId\": 99999\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Nieprawidlowy status (400)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Test tablicy\",\r\n  \"status\": \"todo\",\r\n  \"priority\": \"medium\",\r\n  \"boardId\": 99999\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Lista uzytkownikow (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Zadania tablicy (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/boards/3/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "boards",
+            "3",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Szczegoly zadania (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/tasks/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Nieistniejace zadanie GET (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/tasks/99999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            "99999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Nieistniejace zadanie PUT (404)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Test edycji zadania\",\r\n  \"description\": \"Sprawdzenie bledu 404\",\r\n  \"status\": \"todo\",\r\n  \"priority\": \"medium\",\r\n  \"deadline\": \"2026-11-20\",\r\n  \"boardId\": 3,\r\n  \"assigneeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/tasks/99999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            "99999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Nieistniejace zadanie DELETE (404)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/tasks/99999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tasks",
+            "99999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Nieprawidlowy tytul PUT (400)",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"A\",\r\n  \"description\": \"Test walidacji PUT\",\r\n  \"status\": \"todo\",\r\n  \"priority\": \"medium\",\r\n  \"deadline\": \"2026-11-20\",\r\n  \"boardId\": 3,\r\n  \"assigneeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "Nieprawidlowy tytul PUT (400)",
+          "host": [
+            "Nieprawidlowy tytul PUT (400)"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
