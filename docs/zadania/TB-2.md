@@ -35,7 +35,6 @@
 - [ ] Wszystkie zapytania działają i mają komentarze.
 - [ ] Pull request z branchu `feature/tb-2-baza` ma zielony workflow i jest scalony przez merge commit.
 
-
 ## Część 2 – API zadań
 
 W tej części zadania rozbudowałem API aplikacji TaskBoard.
