@@ -71,24 +71,61 @@ router.delete('/:id', async (req, res, next) => {
 // GET /api/boards/:boardId/tasks?priority=high – zadania tablicy z filtrem
 router.get('/:boardId/tasks', async (req, res, next) => {
   try {
+    // Sprawdzanie, czy tablica istnieje
     const [boards] = await pool.query(
       'SELECT id FROM boards WHERE id = ? AND isDeleted = 0',
       [req.params.boardId]
     );
+
     if (boards.length === 0) {
       return res.status(404).json({ error: 'Nie znaleziono tablicy' });
     }
+
+    // Pobieranie parametrów filtrowania
+    const { priority, assigneeId, q } = req.query;
+
     let sql = 'SELECT id, title, status, priority, deadline, assigneeId FROM tasks WHERE boardId = ? AND isDeleted = 0';
     const params = [req.params.boardId];
-    const { priority } = req.query;
+
+    // Filtrowanie według priorytetu
     if (priority) {
       if (!['low', 'medium', 'high'].includes(priority)) {
         return res.status(400).json({ error: 'Nieprawidłowy priorytet' });
       }
+
       sql += ' AND priority = ?';
       params.push(priority);
     }
+
+    // Filtrowanie według przypisanej osoby
+    if (assigneeId !== undefined) {
+      const id = Number(assigneeId);
+
+      if (
+        typeof assigneeId !== 'string' ||
+        !/^[1-9]\d*$/.test(assigneeId) ||
+        !Number.isSafeInteger(id)
+      ) {
+        return res.status(400).json({ error: 'Nieprawidłowa osoba' });
+      }
+
+      sql += ' AND assigneeId = ?';
+      params.push(id);
+    }
+
+    // Wyszukiwanie fragmentu tytułu
+    if (q) {
+      if (typeof q !== 'string') {
+        return res.status(400).json({ error: 'Nieprawidłowe wyszukiwanie' });
+      }
+
+      sql += ' AND title LIKE ?';
+      params.push(`%${q}%`);
+    }
+
+    // Pobieranie przefiltrowanych zadań
     const [rows] = await pool.query(sql, params);
+
     res.json(rows);
   } catch (err) {
     next(err);
