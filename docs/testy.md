@@ -27,11 +27,6 @@
 | T15 | API – lista tablic | GET `/api/boards` po zalogowaniu | HTTP 200 i lista tablic | PASS – HTTP 200 |
 | T16 | API – lista zadań | GET `/api/boards/3/tasks` po zalogowaniu | HTTP 200 i lista zadań | PASS – HTTP 200 |
 
-
-
-## Podsumowanie
-
-
 ## Podsumowanie
 
 Przeprowadzono 16 testów, w tym 6 testów API.
