@@ -51,7 +51,16 @@ UPDATE tasks
 SET status = 'done'
 WHERE id = 2;
 
--- 9. Miekkie usuniecie zadania
+-- 9. Liczba aktywnych zadan przypisanych do kazdego uzytkownika
+SELECT
+    users.login,
+    COUNT(tasks.id) AS liczba_zadan
+FROM users
+LEFT JOIN tasks ON users.id = tasks.assigneeId
+    AND tasks.isDeleted = 0
+GROUP BY users.id, users.login;
+
+-- 10. Miekkie usuniecie zadania
 SELECT * FROM tasks WHERE id = 4;
 UPDATE tasks
 SET isDeleted = 1,
@@ -59,15 +68,7 @@ SET isDeleted = 1,
     deletedById = 1
 WHERE id = 4;
 
--- 9. Miekkie usuniecie zadania
-SELECT * FROM tasks WHERE id = 4;
-UPDATE tasks
-SET isDeleted = 1,
-    deletedAt = NOW(),
-    deletedById = 1
-WHERE id = 4;
-
--- 10. Usuwanie zadan starszych niz 30 dni
+-- 11. Usuwanie zadan starszych niz 30 dni
 SELECT *
 FROM tasks
 WHERE isDeleted = 1

@@ -97,8 +97,10 @@ router.get('/:boardId/tasks', async (req, res, next) => {
       params.push(priority);
     }
 
-    // Filtrowanie według przypisanej osoby
-    if (assigneeId !== undefined) {
+     // Filtrowanie według przypisanej osoby
+    if (assigneeId === 'none') {
+      sql += ' AND assigneeId IS NULL';
+    } else if (assigneeId !== undefined) {
       const id = Number(assigneeId);
 
       if (

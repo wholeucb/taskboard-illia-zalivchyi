@@ -18,6 +18,7 @@ function policzWykonane(lista) {
       licznik++;
     }
   }
+    // Dodano return, aby funkcja zwracala liczbe wykonanych zadan
   return licznik;
 }
 

@@ -180,14 +180,23 @@ router.put('/:id', async (req, res, next) => {
     }
 });
 
+
 // Soft delete zadania
 router.delete('/:id', async (req, res, next) => {
     try {
+        const deletedById = req.session?.userId;
+
+        if (!deletedById) {
+            return res.status(401).json({
+                error: 'Nie jestes zalogowany'
+            });
+        }
+
         const [result] = await pool.query(
             `UPDATE tasks
-             SET isDeleted = 1, deletedAt = NOW()
+             SET isDeleted = 1, deletedAt = NOW(), deletedById = ?
              WHERE id = ? AND isDeleted = 0`,
-            [req.params.id]
+            [deletedById, req.params.id]
         );
 
         if (result.affectedRows === 0) {
