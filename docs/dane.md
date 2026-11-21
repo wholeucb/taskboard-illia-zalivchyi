@@ -1,4 +1,3 @@
-
 # Opis danych TaskBoard
 
 ## Co aplikacja przechowuje
@@ -7,33 +6,36 @@
 
 | Informacja | Przykład |
 | --- | --- |
-| Imię | Jan |
-| Nazwisko | Kowalski |
-| Login | janek |
-| E-mail | jan@gmail.com |
+| Imię (`firstName`) | Jan |
+| Nazwisko (`lastName`) | Kowalski |
+| Login (`login`) | janek |
+| Hasło (`passwordHash`) | Zaszyfrowane hasło |
+| Data utworzenia (`createdAt`) | 2026-11-04 |
 
 ### Tablica
 
 | Informacja | Przykład |
 | --- | --- |
-| Nazwa tablicy | Moje zadania |
-| Opis | Zadania do wykonania |
-| Data utworzenia | 2026-11-04 |
-| Autor | Jan Kowalski |
+| Nazwa (`name`) | Moje zadania |
+| Opis (`description`) | Zadania do wykonania |
+| Data utworzenia (`createdAt`) | 2026-11-04 |
+| Autor (`ownerId`) | 1 |
 
 ### Zadanie
 
 | Informacja | Przykład |
 | --- | --- |
-| Tytuł | Nauka HTML |
-| Opis | Powtórzyć podstawy HTML |
-| Status | W trakcie |
-| Priorytet | Wysoki |
-| Termin | 2026-11-10 |
+| Tytuł (`title`) | Nauka HTML |
+| Opis (`description`) | Powtórzyć podstawy HTML |
+| Status (`status`) | in_progress |
+| Priorytet (`priority`) | high |
+| Termin (`deadline`) | 2026-11-10 |
+| Tablica (`boardId`) | 1 |
+| Przypisana osoba (`assigneeId`) | 1 |
 
 ## Powiązania
 
-Jeden użytkownik może mieć kilka tablic. Na jednej tablicy może znajdować się wiele zadań. Każde zadanie jest przypisane do jednej tablicy. Do zadania można przypisać osobę, która będzie je wykonywać.
+Jeden użytkownik może mieć kilka tablic. Na jednej tablicy może znajdować się wiele zadań. Każde zadanie jest przypisane do jednej tablicy. Do zadania można przypisać użytkownika, który będzie je wykonywać.
 
 ## Przykład zadania w JSON
 
@@ -42,48 +44,52 @@ Jeden użytkownik może mieć kilka tablic. Na jednej tablicy może znajdować s
   "id": 1,
   "title": "Nauka HTML",
   "description": "Powtórzyć podstawy HTML",
-  "status": "W trakcie",
-  "priority": "Wysoki",
-  "dueDate": "2026-11-10",
+  "status": "in_progress",
+  "priority": "high",
+  "deadline": "2026-11-10",
   "boardId": 1,
-  "assignedUserId": 1
+  "assigneeId": 1
 }
 ```
 
 ## Wstępny diagram ERD
 
-Diagram pokazuje, jakie informacje są przechowywane w aplikacji i jak są ze sobą połączone.
+Diagram pokazuje tabele bazy danych i ich powiązania.
 
 ```mermaid
 erDiagram
-    UZYTKOWNIK ||--o{ TABLICA : tworzy
-    TABLICA ||--o{ ZADANIE : zawiera
-    UZYTKOWNIK o|--o{ ZADANIE : wykonuje
+    users ||--o{ boards : tworzy
+    boards ||--o{ tasks : zawiera
+    users o|--o{ tasks : wykonuje
 
-    UZYTKOWNIK {
+    users {
         int id PK
-        string imie
-        string nazwisko
         string login
-        string email
+        string passwordHash
+        string firstName
+        string lastName
+        datetime createdAt
     }
 
-    TABLICA {
+    boards {
         int id PK
-        string nazwa
-        string opis
-        date data_utworzenia
-        int user_id FK
+        string name
+        string description
+        int ownerId FK
+        datetime createdAt
     }
 
-    ZADANIE {
+    tasks {
         int id PK
-        string tytul
-        string opis
+        string title
+        string description
         string status
-        string priorytet
-        date termin
-        int board_id FK
-        int assigned_user_id FK
+        string priority
+        date deadline
+        int boardId FK
+        int assigneeId FK
+        boolean isDeleted
+        datetime deletedAt
+        int deletedById FK
     }
 ```

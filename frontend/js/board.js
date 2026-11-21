@@ -36,8 +36,8 @@ async function loadTasks() {
     params.set('priority', priority);
   }
 
-  if (assignee && assignee !== 'none') {
-    params.set('assigneeId', assignee);
+  if (assignee) {
+  params.set('assigneeId', assignee);
   }
 
   if (search) {

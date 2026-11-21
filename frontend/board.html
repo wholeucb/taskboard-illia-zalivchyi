@@ -252,21 +252,22 @@
 
   <!-- Wylogowanie użytkownika -->
   <script>
-    document.getElementById('logoutBtn').addEventListener('click', async () => {
-      try {
-        const response = await fetch('/api/auth/logout', {
-          method: 'POST'
-        });
-
-        if (!response.ok) {
-          throw new Error('Nie udało się wylogować.');
-        }
-
-        window.location.href = 'login.html';
-      } catch (error) {
-        alert(error.message);
-      }
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+  try {
+    const response = await fetch('/api/auth/logout', {
+      method: 'POST'
     });
+
+    if (!response.ok) {
+      throw new Error('Nie udało się wylogować.');
+    }
+
+    window.location.href = 'login.html';
+  } catch (error) {
+    alert(error.message);
+  }
+  });
+
   </script>
 
 </body>

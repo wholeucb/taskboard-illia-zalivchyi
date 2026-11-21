@@ -21,9 +21,14 @@
 | T09 | Lighthouse | Sprawdź Accessibility na trzech stronach | Wynik co najmniej 90 | PASS – 100/100 |
 | T10 | W3C HTML Validator | Sprawdź trzy pliki HTML | Brak błędów walidacji | PASS – 0 błędów |
 | T11 | Nieprawidłowy assigneeId | Wyślij GET /api/boards/3/tasks?assigneeId=abc | HTTP 400 i komunikat błędu | PASS – HTTP 400 |
+| T12 | API – sprawdzenie serwera | GET `/api/health` | HTTP 200 i `ok: true` | PASS – HTTP 200 |
+| T13 | API – poprawne logowanie | POST `/api/auth/login` z poprawnymi danymi | HTTP 200 | PASS – HTTP 200 |
+| T14 | API – błędne logowanie | POST `/api/auth/login` z błędnym hasłem | HTTP 401 | PASS – HTTP 401 |
+| T15 | API – lista tablic | GET `/api/boards` po zalogowaniu | HTTP 200 i lista tablic | PASS – HTTP 200 |
+| T16 | API – lista zadań | GET `/api/boards/3/tasks` po zalogowaniu | HTTP 200 i lista zadań | PASS – HTTP 200 |
 
 ## Podsumowanie
 
-Przeprowadzono 11 testów interfejsu i dostępności.
+Przeprowadzono 16 testów, w tym 6 testów API.
 
-Wszystkie opisane testy zakończyły się wynikiem PASS.
+Wszystkie testy zakończyły się wynikiem PASS.
